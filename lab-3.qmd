@@ -229,7 +229,8 @@ country_inflation_longer |>
 a\. Create a vector called `countries_of_interest` which contains the names of up tp five countries you want to visualize the inflation rates for over the years. For example, if these countries are Türkiye and United States, you can express this as follows:
 
 ```{r}
-countries_of_interest <- c("Türkiye", "United States")
+
+countries_of_interest <- c("United States", "Canada", "United Kingdom", "New Zealand", "Australia")
 ```
 
 If they are Türkiye, United States, and China, you can express this as follows:
@@ -242,11 +243,21 @@ countries_of_interest <- c(
 
 So on and so forth... Then, in 1-2 sentences, state why you chose these countries.
 
+These are the five eyes countries and I think it would be interesting to how these intelligence sharing countries also share inflation and economic indicators.
+
 ::: callout-note
 Your `countries_of_interest` should consist of no more than five countries. Make sure that the spelling of your countries matches how they appear in the dataset.
 :::
 
 b\. In a single pipeline, filter your reshaped dataset to include only the `countries_of_interest` from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you're starting with. Use a short but informative name. Then, in a new pipeline, find the `distinct()` countries in the data frame you created.
+```{r}
+
+coi_inflation <- country_inflation_longer |>
+  filter(country %in% countries_of_interest)
+
+coi_inflation |>
+  distinct(country)
+```
 
 ::: callout-tip
 The number of distinct countries in the filtered data frame you created in part (b) should equal the number of countries you chose in part (a). If it doesn't, you might have misspelled a country name or made a mistake in how to filter for these countries. Go back and check your code.
