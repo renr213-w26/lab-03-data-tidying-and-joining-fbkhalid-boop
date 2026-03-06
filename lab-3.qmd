@@ -399,14 +399,7 @@ Using your data frame from the previous question, create a plot of annual inflat
 -   Plot should be customized in at least one way – you could use a different than default color scale, or different than default theme, or some other customization.
 -   If your legend has labels that are too long, you can try moving the legend to the bottom and stack the labels vertically. *Hint:* The `legend.position` and `legend.direction` arguments of the `theme()` functions will be useful.
 
-```{r}
-ggplot() 
 
-  theme(
-    legend.position = "bottom", 
-    legend.direction = "vertical"
-  )
-```
 
 ::: render-commit-push
 If you haven't yet done so since Part 1, now is a good time to render, commit, and push. Make sure that you commit and push all changed documents and your Git pane is completely empty before proceeding.
@@ -414,7 +407,8 @@ If you haven't yet done so since Part 1, now is a good time to render, commit, a
 
 ```{r}
 
-ggplot(us_inf_filtered, aes(x = year, y = annual_inflation, color = description, shape = description)) +
+ggplot(us_inf_filtered, aes(x = year, y = annual_inflation, 
+color = description, shape =  description)) +
   geom_point(alpha = 0.8) +
   geom_line(linewidth = 1) +
   theme_light() +
@@ -431,6 +425,10 @@ ggplot(us_inf_filtered, aes(x = year, y = annual_inflation, color = description,
     legend.position = "bottom", 
     legend.direction = "vertical"
   )
+
+
+
+
 ```
 
 The plot reveals distinctly different behavior depending on the economic sector. Categories like Education and Health generally display a steady, persistent rate of positive inflation across the timeline without huge spikes. In contrast, Transport demonstrate far more volatility. This aligns well with general knowledge, as the volatile prices of gas and real estate fluctuate heavily with the broader economy, whereas costs like college tuition simply trend upward over time.
