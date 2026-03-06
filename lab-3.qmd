@@ -325,9 +325,21 @@ cpi_divisions <- read_csv("data/cpi-divisions.csv")
 
 ### Question 8
 
+```{r}
+glimpse(us_inflation)
+```
+
 a\. How many columns and how many rows does the `us_inflation` dataset have? What are the variables in it? Add a brief (1-2 sentences) narrative summarizing this information.
 
+The us_inflation dataset contains 132 rows and 4 columns. The variables represent tracking information like the year, the inflation rate, and a numeric ID corresponding to a specific CPI division.
+
 b\. How many columns and how many rows does the `cpi_divisions` dataset have? What are the variables in it? Add a brief (1-2 sentences) narrative summarizing this information.
+
+```{r}
+glimpse(cpi_divisions)
+```
+
+The cpi_divisions dataset has 12 rows and 2 columns. It acts as a lookup table consisting of a division ID variable and a text description of what that division category actually measures.
 
 c\. Create a new dataset by joining the `us_inflation` dataset with the `cpi_division_id` dataset.
 
@@ -338,7 +350,15 @@ c\. Create a new dataset by joining the `us_inflation` dataset with the `cpi_div
 -   Use a short but informative name for the joined dataset, and do not overwrite either of the datasets that go into creating it.
 
 Then, find the number of rows and columns of the resulting dataset and report the names of its columns. Add a brief (1-2 sentences) narrative summarizing this information.
+```{r}
+us_inflation_joined <- us_inflation |>
+  left_join(cpi_divisions, by = join_by(cpi_division_id == id)) 
 
+dim(us_inflation_joined)
+names(us_inflation_joined)
+```
+
+I used a left_join() to retain all observations from the us_inflation data while appending the text descriptions from cpi_divisions. Because the ID column names differed between the datasets, I used the join_by() argument to explicitly map them. The resulting dataset has 132 rows, 5 columns, and successfully includes the human-readable descriptions.
 ### Question 9
 
 a\. Create a vector called `divisions_of_interest` which contains the descriptions or IDs of CPI divisions you want to visualize. Your `divisions_of_interest` should consist of no more than five divisions. If you're using descriptions, make sure that the spelling of your divisions matches how they appear in the dataset. Then, in 1-2 sentences, state why you chose these divisions.
