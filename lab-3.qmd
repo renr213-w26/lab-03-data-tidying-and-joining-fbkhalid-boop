@@ -177,6 +177,19 @@ Requirements:
 ::: callout-important
 The remaining questions in Part 1 require the use of the pivoted data frame from Question 4.
 :::
+```{r}
+country_inflation_longer <- country_inflation |>
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "annual_inflation",
+    names_transform = as.numeric
+  )
+
+country_inflation_longer
+dim(country_inflation_longer)
+```
+The resulting pivoted data frame now has 1276 rows and 3 columns. By pivoting, we moved the years from column headers into a single variable, making the data much more tidy and suitable for visualization.
 
 ### Question 5
 
