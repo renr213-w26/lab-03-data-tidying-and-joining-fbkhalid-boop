@@ -275,9 +275,24 @@ Requirements for the plot:
 -   The plot should have an appropriate title (and optionally a subtitle).
 -   Plot should be customized in at least one way – you could use a different than default color scale, or different than default theme, or some other customization.
 
-::: render-commit-push
-If you haven't yet done so, now is a good time to render, commit, and push. Make sure that you commit and push all changed documents and your Git pane is completely empty before proceeding.
-:::
+```{r}
+#| label: q7-visualize-inflation
+
+ggplot(coi_inflation, aes(x = year, y = annual_inflation, color = country, shape = country)) +
+  geom_point(alpha = 0.7) +
+  geom_line(linewidth = 1) +
+  scale_color_viridis_d() +
+  theme_minimal() +
+  labs(
+    title = "Annual Inflation Rates (1993-2021)",
+    subtitle = "Comparing the economies of the Five Eyes Alliance",
+    x = "Year",
+    y = "Annual Inflation Rate (%)",
+    color = "Country",
+    shape = "Country"
+  )
+```
+Based on the plot, inflation rates across these major economies remained relatively predictable and clustered tightly together for most of the timeline between 1993 and 2020. I notice multiple sharp, synchronized upticks starting right around major events. This is largely unsurprising, as it visually captures economic disasters like the dot com bubble, the 2008 recession or the global economic impact caused by the COVID-19 pandemic.
 
 ## Part 2
 
