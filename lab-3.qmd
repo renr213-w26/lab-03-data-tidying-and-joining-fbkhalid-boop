@@ -202,6 +202,27 @@ a.  What is the highest inflation rate observed between 1993 and 2021? The outpu
 b.  What is the lowest inflation rate observed between 1993 and 2021? The output of the pipeline should be a data frame with one row and three columns. In addition to code and output, your response should include a single sentence stating the country and year.
 
 c.  Putting (a) and (b) together: What are the highest and the lowest inflation rates observed between 1993 and 2021? The output of the pipeline should be a data frame with two rows and three columns.
+```{r}
+
+country_inflation_longer |>
+  filter(annual_inflation == max(annual_inflation, na.rm = TRUE))
+```
+The highest inflation rate observed between 1993 and 2021 was in 1994 of 2075.888% in Brazil.
+```{r}
+
+country_inflation_longer |>
+  filter(annual_inflation == min(annual_inflation, na.rm = TRUE))
+```
+The lowest inflation rate observed between 1993 and 2021 was in Ireland in the year 2009.
+
+```{r}
+
+country_inflation_longer |>
+  filter(
+    annual_inflation == max(annual_inflation, na.rm = TRUE) | 
+    annual_inflation == min(annual_inflation, na.rm = TRUE)
+  )
+```
 
 ### Question 6
 
