@@ -366,8 +366,27 @@ a\. Create a vector called `divisions_of_interest` which contains the descriptio
 ::: callout-tip
 Refer back to the guidance provided in [Question 6] if you're not sure how to create this vector.
 :::
+```{r}
+
+divisions_of_interest <- c(
+
+  "Health", 
+  "Education", 
+  "Transport"
+)
+```
+
+I chose these five divisions because they represent essential, core living expenses for the average Canadian household, which makes their inflation trends highly relevant to daily life.
 
 b\. In a single pipeline, filter your reshaped dataset to include only the `divisions_of_interest` from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you're starting with. Use a short but informative name. Then, in a new pipeline, find the `distinct()` divisions in the data frame you created.
+```{r}
+us_inf_filtered <- us_inflation_joined |>
+  filter(description %in% divisions_of_interest) 
+
+
+us_inf_filtered |>
+  distinct(description)
+```
 
 ### Question 10
 
@@ -393,6 +412,28 @@ ggplot()
 If you haven't yet done so since Part 1, now is a good time to render, commit, and push. Make sure that you commit and push all changed documents and your Git pane is completely empty before proceeding.
 :::
 
+```{r}
+
+ggplot(us_inf_filtered, aes(x = year, y = annual_inflation, color = description, shape = description)) +
+  geom_point(alpha = 0.8) +
+  geom_line(linewidth = 1) +
+  theme_light() +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "US Annual Inflation by CPI Division",
+    subtitle = "Focusing on core consumer expenses",
+    x = "Year",
+    y = "Annual Inflation Rate (%)",
+    color = "CPI Division",
+    shape = "CPI Division"
+  ) +
+  theme(
+    legend.position = "bottom", 
+    legend.direction = "vertical"
+  )
+```
+
+The plot reveals distinctly different behavior depending on the economic sector. Categories like Education and Health generally display a steady, persistent rate of positive inflation across the timeline without huge spikes. In contrast, Transport demonstrate far more volatility. This aligns well with general knowledge, as the volatile prices of gas and real estate fluctuate heavily with the broader economy, whereas costs like college tuition simply trend upward over time.
 # Wrap-up
 
 ## Submission
