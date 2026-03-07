@@ -233,13 +233,6 @@ a\. Create a vector called `countries_of_interest` which contains the names of u
 countries_of_interest <- c("United States", "Canada", "United Kingdom", "New Zealand", "Australia")
 ```
 
-If they are Türkiye, United States, and China, you can express this as follows:
-
-```{r}
-countries_of_interest <- c(
-  "Türkiye", "United States", "China (People's Republic of)"
-)
-```
 
 So on and so forth... Then, in 1-2 sentences, state why you chose these countries.
 
@@ -376,7 +369,7 @@ divisions_of_interest <- c(
 )
 ```
 
-I chose these five divisions because they represent essential, core living expenses for the average Canadian household, which makes their inflation trends highly relevant to daily life.
+I chose these three  divisions because they represent essential, general expenses for the average Canadian household and especially students, which makes their inflation trends highly relevant to daily life.
 
 b\. In a single pipeline, filter your reshaped dataset to include only the `divisions_of_interest` from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you're starting with. Use a short but informative name. Then, in a new pipeline, find the `distinct()` divisions in the data frame you created.
 ```{r}
